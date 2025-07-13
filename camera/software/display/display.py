@@ -44,7 +44,7 @@ class Display:
 
     # setup LCD
     self.disp.Init()
-    #self.disp.bl_DutyCycle(50)
+    self.disp.bl_DutyCycle(50)
   
   def render_menu_base(self, center_text = "Camera on", photo_text = "photo"):
     image = Image.new("RGB", (width, height), "BLACK")
