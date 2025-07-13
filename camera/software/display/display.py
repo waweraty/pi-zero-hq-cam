@@ -18,6 +18,7 @@ from threading import Thread
 
 #--------------Assets------------------#
 base_path = os.getcwd() # root of repo eg. /software/ since main.py calls process
+path = os.path.dirname(__file__) + '/'
 
 battery_sprite_path = base_path + "/menu/menu-sprites/battery_25_15.jpg"
 folder_sprite_path = base_path + "/menu/menu-sprites/folder_21_18.jpg"
@@ -26,8 +27,8 @@ gear_sprite_path = base_path + "/menu/menu-sprites/gear_23_20.jpg"
 #small_font = ImageFont.truetype(base_path + "/display/alt-font.ttc", 13)
 #large_font = ImageFont.truetype(base_path + "/display/alt-font.ttc", 16)
 
-small_font = ImageFont.truetype("./alt-font.ttc", 13)
-large_font = ImageFont.truetype("./alt-font.ttc", 16)
+small_font = ImageFont.truetype(f"{path}alt-font.ttc", 13)
+large_font = ImageFont.truetype(f"{path}alt-font.ttc", 16)
 
 class Display:
   def __init__(self, main):
