@@ -25,13 +25,13 @@ class Buttons():
 
     # already set as BCM by OLED
 
-    GPIO.setup(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # UP
-    GPIO.setup(KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # LEFT
-    GPIO.setup(KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # CENTER
-    GPIO.setup(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # RIGHT
-    GPIO.setup(KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # DOWN
-    GPIO.setup(KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # BACK
-    GPIO.setup(SHUTTER, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # SHUTTER
+    GPIO.setmode(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # UP
+    GPIO.setmode(KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # LEFT
+    GPIO.setmode(KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # CENTER
+    GPIO.setmode(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # RIGHT
+    GPIO.setmode(KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # DOWN
+    GPIO.setmode(KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # BACK
+    GPIO.setmode(SHUTTER, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # SHUTTER
 
   def start(self):
     Thread(target=self.listen).start()
