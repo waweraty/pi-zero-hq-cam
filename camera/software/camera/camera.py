@@ -9,19 +9,19 @@ class Camera:
     self.main = main
     self.display = main.display
     self.manual_mode = False
-    self.img_base_path = os.getcwd() + "/captured-media/"
+    self.img_base_path = os.path.join(os.path.dirname(__file__), os.pardir) + "/captured-media/"
     self.live_preview_active = False
     self.live_preview_start = 0
     self.live_preview_pause = False
     self.picam2 = Picamera2()
     self.encoder = H264Encoder()
-    self.small_res_config = self.picam2.create_still_configuration(main={"size": (128, 128)}) # should not be a square
+    self.small_res_config = self.picam2.create_still_configuration(main={"size": (240, 240)}) # should not be a square
     self.zoom_4x_config = self.picam2.create_still_configuration(main={"size": (1014, 760)})
     self.full_res_config = self.picam2.create_still_configuration() # also same as 16x
     self.video_config = self.picam2.create_video_configuration()
     self.zoom_level = 1 # 1, 4 capped to 4 because 16x would be way too much (OLED refresh rate and vibration of hand)
     self.pan_offset = [0, 0] # depends on zoom level, should be at center crop
-    self.crop = [128, 128]
+    self.crop = [240, 240]
     self.last_mode = "small"
     self.timelapse_active = False
 
