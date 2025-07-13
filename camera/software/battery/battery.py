@@ -7,7 +7,7 @@ import time
 from threading import Thread
 
 # this is hardcoded since depending on what calls this file, the os.getcwd() output changes
-base_path = "/home/pi/pi-zero-hq-cam/camera/software/"
+base_path = "/home/flufifilm/pi-zero-hq-cam/camera/software/"
 
 class Battery:
   def __init__(self, main = None):
