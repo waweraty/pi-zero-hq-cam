@@ -29,7 +29,7 @@ large_font = ImageFont.truetype(base_path + "/display/alt-font.ttc", 16)
 class Display:
   def __init__(self, main):
     self.main = main
-    self.disp = ST7789.ST7789()
+    self.disp = ST7789()
     self.active_img = None
     self.active_icon = None
     self.utils = main.utils

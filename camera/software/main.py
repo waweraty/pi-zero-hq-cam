@@ -17,7 +17,7 @@ from camera.camera import Camera
 from menu.menu import Menu
 from display.display import Display
 from utils.utils import Utils
-from imu.imu import Imu # 6050 or GY-91
+#from imu.imu import Imu # 6050 or GY-91
 
 class Main:
   def __init__(self):
@@ -60,9 +60,9 @@ class Main:
     self.menu = Menu(self)
     self.display.show_boot_scene()
     self.controls = Buttons(self)
-    self.imu = Imu()
+    #self.imu = Imu()
 
-    self.imu.start()
+    #self.imu.start()
     self.camera.start()
     self.controls.start()
     self.check_battery()

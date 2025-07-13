@@ -1,8 +1,8 @@
 
 import time
-import config
+from .config import RaspberryPi
 
-class ST7789(config.RaspberryPi):
+class ST7789(RaspberryPi):
 
     width = 240
     height = 240 
