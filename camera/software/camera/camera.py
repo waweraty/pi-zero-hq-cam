@@ -16,7 +16,7 @@ class Camera:
     self.picam2 = Picamera2()
     self.encoder = H264Encoder()
     self.small_res_config = self.picam2.create_still_configuration(main={"size": (240, 240)}) # should not be a square
-    self.zoom_4x_config = self.picam2.create_still_configuration(main={"size": (1014, 760)})
+    self.zoom_4x_config = self.picam2.create_still_configuration(main={"size": (1920, 1440)})
     self.full_res_config = self.picam2.create_still_configuration() # also same as 16x
     self.video_config = self.picam2.create_video_configuration()
     self.zoom_level = 1 # 1, 4 capped to 4 because 16x would be way too much (OLED refresh rate and vibration of hand)
@@ -158,7 +158,7 @@ class Camera:
 
     if (self.zoom_level == 1):
       self.zoom_level = 4
-      self.pan_offset = [443, 316] # based on (1014/2) - (128/2)
+      self.pan_offset = [840, 630] # based on (1014/2) - (128/2)
       self.change_mode("zoom 4x")
 
   def zoom_out(self):
@@ -184,24 +184,24 @@ class Camera:
 
     # this may not be perfectly covering all surface area of the image
     if (button == "UP"):
-      if (self.pan_offset[1] > 128):
-        self.pan_offset[1] -= 128
+      if (self.pan_offset[1] > 240):
+        self.pan_offset[1] -= 240
       else:
         self.pan_offset[1] = 0
     if (button == "DOWN"):
-      if (self.pan_offset[1] < 632):
-        self.pan_offset[1] += 128
+      if (self.pan_offset[1] < 1200):
+        self.pan_offset[1] += 240
       else:
-        self.pan_offset[1] = 632
+        self.pan_offset[1] = 1200
     if (button == "LEFT"):
-      if (self.pan_offset[0] > 128):
-        self.pan_offset[0] -= 128
+      if (self.pan_offset[0] > 240):
+        self.pan_offset[0] -= 240
       else:
-        self.pan_offset[0] = 128
+        self.pan_offset[0] = 240
     if (button == "RIGHT"):
-      if (self.pan_offset[0] < 886):
-        self.pan_offset[0] += 128
+      if (self.pan_offset[0] < 1672):
+        self.pan_offset[0] += 240
       else:
-        self.pan_offset[0] = 886
+        self.pan_offset[0] = 1672
     
     self.main.processing = False

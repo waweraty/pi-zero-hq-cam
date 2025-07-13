@@ -33,7 +33,7 @@ import time
 import spidev
 import logging
 import numpy as np
-from gpiozero import *
+from gpiozero import DigitalOutputDevice, DigitalInputDevice, PWMOutputDevice
 
 
 #GPIO define

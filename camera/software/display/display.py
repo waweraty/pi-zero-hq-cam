@@ -1,6 +1,7 @@
 import os
 import time
 import math
+import spidev as SPI
 
 #--------------Driver Library-----------------#
 import RPi.GPIO as GPIO
@@ -8,10 +9,7 @@ import RPi.GPIO as GPIO
 from .ST7789 import ST7789#Init, ShowImage, clear, ShowBuffer
 
 #--------------Image Library------------------#
-from PIL  import Image
-from PIL import ImageDraw
-from PIL import ImageFont
-from PIL import ImageColor
+from PIL import Image, ImageDraw, ImageFont, ImageColor
 
 # temporary (lol)
 from threading import Thread
@@ -44,6 +42,7 @@ class Display:
 
     # setup LCD
     self.disp.Init()
+    self.disp.clear()
     self.disp.bl_DutyCycle(50)
   
   def render_menu_base(self, center_text = "Camera on", photo_text = "photo"):
