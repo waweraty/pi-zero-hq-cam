@@ -30,6 +30,9 @@ gear_sprite_path = base_path + "/menu/menu-sprites/gear_23_20.jpg"
 small_font = ImageFont.truetype(f"{path}alt-font.ttc", 13)
 large_font = ImageFont.truetype(f"{path}alt-font.ttc", 16)
 
+width = 240
+height = 240
+
 class Display:
   def __init__(self, main):
     self.main = main
@@ -44,7 +47,7 @@ class Display:
     #self.disp.bl_DutyCycle(50)
   
   def render_menu_base(self, center_text = "Camera on", photo_text = "photo"):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.text((7, 3), photo_text, fill = "WHITE", font = small_font)
@@ -82,7 +85,7 @@ class Display:
     self.disp.clear()
 
   def show_boot_scene(self):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     # look right
@@ -101,7 +104,7 @@ class Display:
 
     time.sleep(1)
 
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     # wink
@@ -118,7 +121,7 @@ class Display:
 
     time.sleep(0.5)
 
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     # look right
@@ -137,7 +140,7 @@ class Display:
 
     time.sleep(1)
 
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.text((20, 55), "Pi Zero Cam", fill = "WHITE", font = large_font)
@@ -183,7 +186,7 @@ class Display:
     self.disp.ShowImage(image)
 
   def draw_text(self, text):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
     font = large_font
 
@@ -192,7 +195,7 @@ class Display:
     self.disp.ShowImage(image)
 
   def get_settings_img(self):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.line([(0, 0), (128, 0)], fill = "WHITE", width = 40)
@@ -209,7 +212,7 @@ class Display:
     self.disp.ShowImage(image)
 
   def render_battery_profiler(self):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.text((0, 48), "Profiling battery", fill = "WHITE", font = large_font)
@@ -218,7 +221,7 @@ class Display:
     self.disp.ShowImage(image)
 
   def render_timelapse(self):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.text((0, 48), "5 min timelapse", fill = "WHITE", font = large_font)
@@ -227,7 +230,7 @@ class Display:
     self.disp.ShowImage(image)
 
   def render_battery_charged(self, is_charged = False):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
     draw.text((22, 48), "Battery Charged?", fill = "WHITE", font = small_font)
@@ -262,7 +265,7 @@ class Display:
 
   def render_live_telemetry(self):
     while (self.main.menu.active_menu_item == "Telemetry"):
-      image = Image.new("RGB", (128, 128), "BLACK")
+      image = Image.new("RGB", (width, height), "BLACK")
       draw = ImageDraw.Draw(image)
 
       accel = self.main.imu.accel
@@ -294,7 +297,7 @@ class Display:
   # yeah this is hard, need offsets
   # https://stackoverflow.com/a/451580
   def get_files_scene(self, file_paths, page, pages):
-    image = Image.new("RGB", (128, 128), "BLACK")
+    image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
     base_img_path = base_path + "/captured-media/"
 
