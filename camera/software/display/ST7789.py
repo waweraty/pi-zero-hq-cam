@@ -131,7 +131,7 @@ class ST7789(RaspberryPi):
         """Set buffer to value of Python Imaging Library image."""
         """Write display buffer to physical display"""
         imwidth, imheight = Image.size
-        if imwidth != self.width or imheight != self.height:
+        if imwidth > self.width or imheight > self.height:
             raise ValueError('Image must be same dimensions as display \
                 ({0}x{1}).' .format(self.width, self.height))
         img = self.np.asarray(Image)
@@ -148,7 +148,7 @@ class ST7789(RaspberryPi):
         """Set buffer to value of Python Imaging Library image."""
         """Write display buffer to physical display"""
         imwidth, imheight = Buffer.size
-        if imwidth != self.width or imheight != self.height:
+        if imwidth > self.width or imheight > self.height:
             raise ValueError('Buffer must be same dimensions as display \
                 ({0}x{1}).' .format(self.width, self.height))
         img = self.np.asarray(Buffer)
