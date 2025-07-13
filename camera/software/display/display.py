@@ -17,7 +17,7 @@ from PIL import ImageColor
 from threading import Thread
 
 #--------------Assets------------------#
-base_path = os.getcwd() # root of repo eg. /software/ since main.py calls process
+base_path = os.path.join(os.path.dirname(__file__), os.pardir) # root of repo eg. /software/ since main.py calls process
 path = os.path.dirname(__file__) + '/'
 
 battery_sprite_path = base_path + "/menu/menu-sprites/battery_25_15.jpg"

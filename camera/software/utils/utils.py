@@ -23,13 +23,13 @@ class Utils:
 
   # https://stackoverflow.com/a/2632251
   def get_file_count(self):
-    base_path = os.getcwd()
+    base_path = os.path.join(os.path.dirname(__file__), os.pardir)
     capture_path = base_path + "/captured-media/"
     # -1 for gitkeep file
     return len([name for name in os.listdir(capture_path) if os.path.isfile(os.path.join(capture_path, name))]) - 1
   
   def get_files(self):
-    base_path = os.getcwd()
+    base_path = os.path.join(os.path.dirname(__file__), os.pardir)
     capture_path = base_path + "/captured-media/"
     files = os.listdir(capture_path)
 
