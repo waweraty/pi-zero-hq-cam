@@ -265,8 +265,10 @@ class Display:
       image = Image.new("RGB", (width, height), "BLACK")
       draw = ImageDraw.Draw(image)
 
-      accel = self.main.imu.accel
-      gyro = self.main.imu.gyro
+      #accel = self.main.imu.accel
+      #gyro = self.main.imu.gyro
+      accel = [0,0,0]
+      gyro = [0,0,0]
 
       draw.line([(0, 0), (128, 0)], fill = "WHITE", width = 40)
       draw.text((5, 0), "Raw Telemetry", fill = "BLACK", font = large_font)
