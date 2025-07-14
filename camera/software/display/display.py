@@ -149,7 +149,7 @@ class Display:
 
     self.clear_screen()
 
-  def set_menu_center_text(self, draw, text, x = 22, y = 48):
+  def set_menu_center_text(self, draw, text, x = width*0.5, y = height*0.5):
     draw.text((x, y), text, fill = "WHITE", font = large_font, align='center', anchor='mm')
 
   def draw_active_icon(self, icon_name):
@@ -157,19 +157,19 @@ class Display:
     draw = ImageDraw.Draw(image)
 
     if (icon_name == "Files"):
-      draw.line([(int(width*0.47), int(height*0.95)), (int(width*0.77), int(height*0.95))], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.6), int(height*0.96)), (int(width*0.8), int(height*0.96))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Files")
 
     if (icon_name == "Camera Settings"):
-      draw.line([(int(width*0.06), int(height*0.95)), (int(width*0.27), int(height*0.95))], fill = "MAGENTA", width = 2)
-      self.set_menu_center_text(draw, "Camera Settings", 5)
+      draw.line([(int(width*0.05), int(height*0.95)), (int(width*0.25), int(height*0.95))], fill = "MAGENTA", width = 2)
+      self.set_menu_center_text(draw, "Camera Settings")
 
     if (icon_name == "Photo Video Toggle"):
-      draw.line([(int(width*0.06), int(height*0.17)), (int(width*0.27), int(height*0.17))], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.04), int(height*0.06)), (int(width*0.2), int(height*0.06))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Toggle Mode")
 
     if (icon_name == "Settings"):
-      draw.line([(int(width*0.79), int(height*0.95)), (int(width*0.97), int(height*0.95))], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.83), int(height*0.96)), (int(width*0.97), int(height*0.96))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Settings")
     
     ShowImage(image)
@@ -227,6 +227,14 @@ class Display:
 
     ShowImage(image)
 
+  def render_shutdown(self):
+    image = Image.new("RGB", (width, height), "BLACK")
+    draw = ImageDraw.Draw(image)
+
+    draw.text((int(width*0.5), int(height*0.5)), "OK", fill = "WHITE", font = large_font, align='center', anchor='mm')
+
+    ShowImage(image)
+
   def render_battery_charged(self, is_charged = False):
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
@@ -241,7 +249,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.2)), (0, int(height*0.33))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.15)), (0, int(height*0.25))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -249,7 +257,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.41)), (0, int(height*0.53))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.3)), (0, int(height*0.4))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -257,7 +265,15 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.61)), (0, int(height*0.74))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.45)), (0, int(height*0.55))], fill = "MAGENTA", width = 2)
+
+    ShowImage(image)
+  
+  def draw_active_shutdown(self):
+    image = self.get_settings_img()
+    draw = ImageDraw.Draw(image)
+
+    draw.line([(0, int(height*0.6)), (0, int(height*0.7))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -296,6 +312,7 @@ class Display:
   # render the OLED scene with these images and pagination footer
   # yeah this is hard, need offsets
   # https://stackoverflow.com/a/451580
+
   def get_files_scene(self, file_paths, page, pages):
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
@@ -305,7 +322,7 @@ class Display:
     # this code has to be reworked anyway this is like a demo
     page_map = [[], [0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]] # matches file list
 
-    new_size = (84, 84)
+    new_size = (80, 80)
 
     files = page_map[page]
     
@@ -318,13 +335,13 @@ class Display:
 
       # this is dumb
       if (file == 0):
-        image.paste(cam_image, (int(width*0.15), int(height*0.07)))
+        image.paste(cam_image, (int(width*0.083), int(height*0.07)))
       if (file == 1):
-        image.paste(cam_image, (int(width*0.67), int(height*0.07)))
+        image.paste(cam_image, (int(width*0.583), int(height*0.07)))
       if (file == 2):
-        image.paste(cam_image, (int(width*0.15), int(height*0.6)))
+        image.paste(cam_image, (int(width*0.083), int(height*0.6)))
       if (file == 3):
-        image.paste(cam_image, (int(width*0.67), int(height*0.6)))
+        image.paste(cam_image, (int(width*0.583), int(height*0.6)))
 
     if (page > 1):
       draw.text((int(width*0.07), int(height*0.9)), "<", fill = "WHITE", font = small_font)

@@ -66,6 +66,12 @@ class Menu:
           self.main.camera.start_timelapse()
           self.main.processing = False
           return
+        
+        if (self.active_menu_item == "Shutdown"):
+          self.main.active_menu = "Shutdown"
+          self.display.render_shutdown()
+          self.main.processing = False
+          return
 
     self.update_menu(button_pressed)
 
@@ -119,6 +125,11 @@ class Menu:
         self.display.draw_active_timelapse()
         self.active_menu_item = "Timelapse"
 
+      if (self.menu_settings_y == 4):
+        self.display.render_settings()
+        self.display.draw_active_shutdown()
+        self.active_menu_item = "Shutdown"
+
     if (self.main.active_menu == "Files"):
       if (button == "BACK"):
         self.main.active_menu = "Home"
@@ -156,6 +167,14 @@ class Menu:
         self.main.camera.stop_timelapse()
         self.main.active_menu = "Home"
         self.display.start_menu()
+
+    if (self.main.active_menu == "Shutdown"):
+      if (button == "BACK"):
+        self.main.active_menu = "Settings"
+        self.display.render_settings()
+
+      if (button == "CENTER"):
+        print('shutdown initiated')
 
     if (self.main.active_menu == "Battery Charged"):
       if (button == "LEFT" and not self.battery_charged):
