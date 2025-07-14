@@ -1,6 +1,7 @@
 import os, time
 
 from threading import Thread
+import libcamera
 from picamera2 import Picamera2
 from picamera2.encoders import H264Encoder, Quality
 
@@ -15,9 +16,12 @@ class Camera:
     self.live_preview_pause = False
     self.picam2 = Picamera2()
     self.encoder = H264Encoder()
-    self.small_res_config = self.picam2.create_still_configuration(main={"size": (240, 240)}) # should not be a square
-    self.zoom_4x_config = self.picam2.create_still_configuration(main={"size": (1920, 1440)})
-    self.full_res_config = self.picam2.create_still_configuration() # also same as 16x
+
+    self.picam2.preview_configuration.sensor.output_size = (2592, 1944)
+
+    self.small_res_config = self.picam2.create_still_configuration(main={"size": (240, 240)}, transform=libcamera.Transform(hflip=1, vflip=1)) # should not be a square
+    self.zoom_4x_config = self.picam2.create_still_configuration(main={"size": (1920, 1440)}, transform=libcamera.Transform(hflip=1, vflip=1))
+    self.full_res_config = self.picam2.create_still_configuration(transform=libcamera.Transform(hflip=1, vflip=1)) # also same as 16x
     self.video_config = self.picam2.create_video_configuration()
     self.zoom_level = 1 # 1, 4 capped to 4 because 16x would be way too much (OLED refresh rate and vibration of hand)
     self.pan_offset = [0, 0] # depends on zoom level, should be at center crop

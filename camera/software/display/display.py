@@ -24,8 +24,8 @@ gear_sprite_path = base_path + "/menu/menu-sprites/gear_23_20.jpg"
 #small_font = ImageFont.truetype(base_path + "/display/alt-font.ttc", 13)
 #large_font = ImageFont.truetype(base_path + "/display/alt-font.ttc", 16)
 
-small_font = ImageFont.truetype(f"{path}alt-font.ttc", 13)
-large_font = ImageFont.truetype(f"{path}alt-font.ttc", 16)
+small_font = ImageFont.truetype(f"{path}alt-font.ttc", 14)
+large_font = ImageFont.truetype(f"{path}alt-font.ttc", 18)
 
 width = 240
 height = 240
@@ -47,22 +47,22 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.text((7, 3), photo_text, fill = "WHITE", font = small_font)
-    draw.text((7, 105), "Auto", fill = "WHITE", font = small_font)
+    draw.text((int(width*0.05), int(height*0.05)), photo_text, fill = "WHITE", font = small_font, align='center', anchor='lm')
+    draw.text((int(width*0.05), int(height*0.9)), "Auto", fill = "WHITE", font = small_font, align='center', anchor='lm')
     # manual photography mode
-    # draw.text((7, 90), "S: 1/60", fill = "WHITE", font = small_font)
-    # draw.text((7, 105), "E: 100", fill = "WHITE", font = small_font)
-    draw.text((22, 48), center_text, fill = "WHITE", font = large_font)
-    draw.text((58, 3), self.main.battery.get_remaining_time(), fill = "WHITE", font = small_font)
-    draw.text((60, 103), str(self.utils.get_file_count()), fill = "WHITE", font = small_font)
+    # draw.text((int(width*0.05), int(height*0.85)), "S: 1/60", fill = "WHITE", font = small_font, align='center', anchor='lm')
+    # draw.text((int(width*0.05), int(height*0.95)), "E: 100", fill = "WHITE", font = small_font, align='center', anchor='lm')
+    draw.text((int(width*0.5), int(height*0.5)), center_text, fill = "WHITE", font = large_font, align='center', anchor='mm')
+    draw.text((int(width*0.7), int(height*0.05)), self.main.battery.get_remaining_time(), fill = "WHITE", font = small_font, align='center', anchor='lm')
+    draw.text((int(width*0.6), int(height*0.925)), str(self.utils.get_file_count()), fill = "WHITE", font = small_font, align='center', anchor='lm')
 
     battery_icon = Image.open(battery_sprite_path)
     folder_icon = Image.open(folder_sprite_path)
     gear_icon = Image.open(gear_sprite_path)
 
-    image.paste(battery_icon, (98, 5))
-    image.paste(folder_icon, (77, 103))
-    image.paste(gear_icon, (101, 102))
+    image.paste(battery_icon, (int(width*0.85), int(height*0.02)))
+    image.paste(folder_icon, (int(width*0.7), int(height*0.89)))
+    image.paste(gear_icon, (int(width*0.85), int(height*0.88)))
 
     return image
 
@@ -150,26 +150,26 @@ class Display:
     self.clear_screen()
 
   def set_menu_center_text(self, draw, text, x = 22, y = 48):
-    draw.text((x, y), text, fill = "WHITE", font = large_font)
+    draw.text((x, y), text, fill = "WHITE", font = large_font, align='center', anchor='mm')
 
   def draw_active_icon(self, icon_name):
     image = self.render_menu_base("")
     draw = ImageDraw.Draw(image)
 
     if (icon_name == "Files"):
-      draw.line([(60, 121), (98, 121)], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.47), int(height*0.95)), (int(width*0.77), int(height*0.95))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Files")
 
     if (icon_name == "Camera Settings"):
-      draw.line([(7, 121), (34, 121)], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.06), int(height*0.95)), (int(width*0.27), int(height*0.95))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Camera Settings", 5)
 
     if (icon_name == "Photo Video Toggle"):
-      draw.line([(7, 22), (34, 22)], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.06), int(height*0.17)), (int(width*0.27), int(height*0.17))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Toggle Mode")
 
     if (icon_name == "Settings"):
-      draw.line([(101, 122), (124, 122)], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.79), int(height*0.95)), (int(width*0.97), int(height*0.95))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Settings")
     
     ShowImage(image)
@@ -187,7 +187,7 @@ class Display:
     draw = ImageDraw.Draw(image)
     font = large_font
 
-    draw.text((0, 96), text, fill = "WHITE", font = font)
+    draw.text((0, int(height*0.75)), text, fill = "WHITE", font = font)
 
     ShowImage(image)
 
@@ -195,11 +195,12 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, 0), (128, 0)], fill = "WHITE", width = 40)
-    draw.text((5, 0), "Settings", fill = "BLACK", font = large_font)
-    draw.text((5, 26), "Telemetry", fill = "WHITE", font = large_font)
-    draw.text((5, 52), "Battery Profiler", fill = "WHITE", font = large_font)
-    draw.text((5, 78), "Timelapse", fill = "WHITE", font = large_font)
+    draw.line([(0, 0), (width, 0)], fill = "WHITE", width = int(height*0.3))
+    draw.text((int(width*0.05), int(height*0.04)), "Settings", fill = "BLACK", font = large_font, align='center', anchor='la')
+    draw.text((int(width*0.05), int(height*0.2)), "Telemetry", fill = "WHITE", font = large_font, align='center', anchor='la')
+    draw.text((int(width*0.05), int(height*0.36)), "Battery Profiler", fill = "WHITE", font = large_font, align='center', anchor='la')
+    draw.text((int(width*0.05), int(height*0.52)), "Timelapse", fill = "WHITE", font = large_font, align='center', anchor='la')
+    draw.text((int(width*0.05), int(height*0.68)), "Shutdown", fill = "WHITE", font = large_font, align='center', anchor='la')
 
     return image
   
@@ -212,8 +213,8 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.text((0, 48), "Profiling battery", fill = "WHITE", font = large_font)
-    draw.text((0, 72), "Press back to cancel", fill = "WHITE", font = small_font)
+    draw.text((0, int(height*0.375)), "Profiling battery", fill = "WHITE", font = large_font)
+    draw.text((0, int(height*0.56)), "Press back to cancel", fill = "WHITE", font = small_font)
 
     ShowImage(image)
 
@@ -221,8 +222,8 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.text((0, 48), "5 min timelapse", fill = "WHITE", font = large_font)
-    draw.text((0, 72), "Press back to cancel", fill = "WHITE", font = small_font)
+    draw.text((0, int(height*0.375)), "5 min timelapse", fill = "WHITE", font = large_font)
+    draw.text((0, int(height*0.56)), "Press back to cancel", fill = "WHITE", font = small_font)
 
     ShowImage(image)
 
@@ -230,9 +231,9 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.text((22, 48), "Battery Charged?", fill = "WHITE", font = small_font)
-    draw.text((22, 72), "Yes", fill = "CYAN" if is_charged else "WHITE", font = small_font)
-    draw.text((60, 72), "No", fill = "WHITE" if is_charged else "CYAN", font = small_font) # default option
+    draw.text((int(width*0.17), int(height*0.375)), "Battery Charged?", fill = "WHITE", font = small_font)
+    draw.text((int(width*0.17), int(height*0.56)), "Yes", fill = "CYAN" if is_charged else "WHITE", font = small_font)
+    draw.text((int(width*0.47), int(height*0.56)), "No", fill = "WHITE" if is_charged else "CYAN", font = small_font) # default option
 
     ShowImage(image)
 
@@ -240,7 +241,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, 26), (0, 42)], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.2)), (0, int(height*0.33))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -248,7 +249,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, 52), (0, 68)], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.41)), (0, int(height*0.53))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -256,7 +257,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, 78), (0, 94)], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.61)), (0, int(height*0.74))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -270,14 +271,14 @@ class Display:
       accel = [0,0,0]
       gyro = [0,0,0]
 
-      draw.line([(0, 0), (128, 0)], fill = "WHITE", width = 40)
-      draw.text((5, 0), "Raw Telemetry", fill = "BLACK", font = large_font)
-      draw.text((5, 26), "accel x: " + str(accel[0])[0:8], fill = "WHITE", font = small_font)
-      draw.text((5, 36), "accel y: " + str(accel[1])[0:8], fill = "WHITE", font = small_font)
-      draw.text((5, 46), "accel z: " + str(accel[2])[0:8], fill = "WHITE", font = small_font)
-      draw.text((5, 56), "gyro x: " + str(gyro[0])[0:8], fill = "WHITE", font = small_font)
-      draw.text((5, 66), "gyro y: " + str(gyro[1])[0:8], fill = "WHITE", font = small_font)
-      draw.text((5, 76), "gyro z: " + str(gyro[2])[0:8], fill = "WHITE", font = small_font)
+      draw.line([(0, 0), (width, 0)], fill = "WHITE", width = int(height*0.3))
+      draw.text((int(width*0.05), 0), "Raw Telemetry", fill = "BLACK", font = large_font)
+      draw.text((int(width*0.05), int(height*0.26)), "accel x: " + str(accel[0])[0:8], fill = "WHITE", font = small_font)
+      draw.text((int(width*0.05), int(height*0.36)), "accel y: " + str(accel[1])[0:8], fill = "WHITE", font = small_font)
+      draw.text((int(width*0.05), int(height*0.46)), "accel z: " + str(accel[2])[0:8], fill = "WHITE", font = small_font)
+      draw.text((int(width*0.05), int(height*0.56)), "gyro x: " + str(gyro[0])[0:8], fill = "WHITE", font = small_font)
+      draw.text((int(width*0.05), int(height*0.66)), "gyro y: " + str(gyro[1])[0:8], fill = "WHITE", font = small_font)
+      draw.text((int(width*0.05), int(height*0.76)), "gyro z: " + str(gyro[2])[0:8], fill = "WHITE", font = small_font)
 
       ShowImage(image)
     
@@ -304,34 +305,34 @@ class Display:
     # this code has to be reworked anyway this is like a demo
     page_map = [[], [0, 1, 2, 3], [4, 5, 6, 7], [8, 9, 10, 11]] # matches file list
 
-    new_size = (45, 45)
+    new_size = (84, 84)
 
     files = page_map[page]
     
     for file in files:
       cam_image = Image.open(base_img_path + file_paths[file])
-      base_width= 45
+      base_width= 84
       wpercent = (base_width / float(cam_image.size[0]))
       hsize = int((float(cam_image.size[1]) * float(wpercent)))
       cam_image = cam_image.resize((base_width, hsize), resample=Image.LANCZOS)
 
       # this is dumb
       if (file == 0):
-        image.paste(cam_image, (15, 7))
+        image.paste(cam_image, (int(width*0.15), int(height*0.07)))
       if (file == 1):
-        image.paste(cam_image, (67, 7))
+        image.paste(cam_image, (int(width*0.67), int(height*0.07)))
       if (file == 2):
-        image.paste(cam_image, (15, 60))
+        image.paste(cam_image, (int(width*0.15), int(height*0.6)))
       if (file == 3):
-        image.paste(cam_image, (67, 60))
+        image.paste(cam_image, (int(width*0.67), int(height*0.6)))
 
     if (page > 1):
-      draw.text((7, 110), "<", fill = "WHITE", font = small_font)
+      draw.text((int(width*0.07), int(height*0.9)), "<", fill = "WHITE", font = small_font)
 
-    draw.text((50, 110), str(page) + "/" + str(pages), fill = "WHITE", font = small_font)
+    draw.text((int(width*0.5), int(height*0.9)), str(page) + "/" + str(pages), fill = "WHITE", font = small_font)
 
     if (pages > 1):
-      draw.text((110, 110), ">", fill = "WHITE", font = small_font)
+      draw.text((int(width*0.9), int(height*0.9)), ">", fill = "WHITE", font = small_font)
 
     return image
 
