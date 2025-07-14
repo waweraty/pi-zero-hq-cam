@@ -165,7 +165,7 @@ class Display:
       self.set_menu_center_text(draw, "Camera Settings")
 
     if (icon_name == "Photo Video Toggle"):
-      draw.line([(int(width*0.04), int(height*0.08)), (int(width*0.2), int(height*0.08))], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.04), int(height*0.08)), (int(width*0.22), int(height*0.08))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Toggle Mode")
 
     if (icon_name == "Settings"):
