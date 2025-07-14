@@ -165,7 +165,7 @@ class Display:
       self.set_menu_center_text(draw, "Camera Settings")
 
     if (icon_name == "Photo Video Toggle"):
-      draw.line([(int(width*0.04), int(height*0.06)), (int(width*0.2), int(height*0.06))], fill = "MAGENTA", width = 2)
+      draw.line([(int(width*0.06), int(height*0.06)), (int(width*0.2), int(height*0.06))], fill = "MAGENTA", width = 2)
       self.set_menu_center_text(draw, "Toggle Mode")
 
     if (icon_name == "Settings"):
@@ -249,7 +249,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.15)), (0, int(height*0.25))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.2)), (0, int(height*0.3))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -257,7 +257,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.3)), (0, int(height*0.4))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.35)), (0, int(height*0.45))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
@@ -265,7 +265,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.45)), (0, int(height*0.55))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.5)), (0, int(height*0.6))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
   
@@ -273,7 +273,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.6)), (0, int(height*0.7))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.65)), (0, int(height*0.75))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 

@@ -32,7 +32,7 @@ class Menu:
         self.menu_y += 1
 
     if (self.main.active_menu == "Settings"):
-      if (button_pressed == "DOWN" and self.menu_settings_y < 3):
+      if (button_pressed == "DOWN" and self.menu_settings_y < 4):
         self.menu_settings_y += 1
       
       if (button_pressed == "UP" and self.menu_settings_y > 1):
