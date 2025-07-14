@@ -1,4 +1,5 @@
 import time
+import os
 
 class Menu:
   def __init__(self, main):
@@ -175,6 +176,7 @@ class Menu:
 
       if (button == "CENTER"):
         print('shutdown initiated')
+        os.system("sudo shutdown -h now")
 
     if (self.main.active_menu == "Battery Charged"):
       if (button == "LEFT" and not self.battery_charged):
