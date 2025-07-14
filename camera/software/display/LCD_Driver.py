@@ -197,7 +197,8 @@ def ShowImage(Image):
     if imwidth > width or imheight > height:
         raise ValueError('Image must be same dimensions as display \
             ({0}x{1}).' .format(width, height))
-    img = np.asarray(Image)
+
+    img = np.asarray(Image.rotate(270))
     pix = np.zeros((width,height,2), dtype = np.uint8)
     pix[...,[0]] = np.add(np.bitwise_and(img[...,[0]],0xF8),np.right_shift(img[...,[1]],5))
     pix[...,[1]] = np.add(np.bitwise_and(np.left_shift(img[...,[1]],3),0xE0),np.right_shift(img[...,[2]],3))
@@ -214,7 +215,7 @@ def ShowBuffer(Buffer):
     if imwidth > width or imheight > height:
         raise ValueError('Buffer must be same dimensions as display \
             ({0}x{1}).' .format(width, height))
-    img = np.asarray(Buffer)
+    img = np.asarray(Buffer.rotate(270))
     pix = np.zeros((width,height,2), dtype = np.uint8)
     pix[...,[0]] = np.add(np.bitwise_and(img[...,[0]],0xF8),np.right_shift(img[...,[1]],5))
     pix[...,[1]] = np.add(np.bitwise_and(np.left_shift(img[...,[1]],3),0xE0),np.right_shift(img[...,[2]],3))
