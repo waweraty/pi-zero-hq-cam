@@ -1,6 +1,7 @@
 # https://raspberrypihq.com/use-a-push-button-with-raspberry-pi-gpio/
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
+from gpiozero import *
 import time
 
 from threading import Thread
@@ -23,16 +24,17 @@ class Buttons():
     self.exit = False
     self.callback = main.button_pressed
 
-    # already set as BCM by OLED
-    GPIO.setmode(GPIO.BCM)
+    self.GPIO_KEY_UP_PIN = DigitalInputDevice(KEY_UP_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY_DOWN_PIN = DigitalInputDevice(KEY_DOWN_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY_LEFT_PIN = DigitalInputDevice(KEY_LEFT_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY_RIGHT_PIN = DigitalInputDevice(KEY_RIGHT_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY_PRESS_PIN = DigitalInputDevice(KEY_PRESS_PIN, pull_up=True, active_state=None)
 
-    GPIO.setup(KEY_UP_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # UP
-    GPIO.setup(KEY_LEFT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # LEFT
-    GPIO.setup(KEY_PRESS_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # CENTER
-    GPIO.setup(KEY_RIGHT_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # RIGHT
-    GPIO.setup(KEY_DOWN_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # DOWN
-    GPIO.setup(KEY1_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # BACK
-    GPIO.setup(SHUTTER, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # SHUTTER
+    self.GPIO_KEY1_PIN = DigitalInputDevice(KEY1_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY2_PIN = DigitalInputDevice(KEY2_PIN, pull_up=True, active_state=None)
+    self.GPIO_KEY3_PIN = DigitalInputDevice(KEY3_PIN, pull_up=True, active_state=None)
+
+    self.GPIO_SHUTTER = DigitalInputDevice(SHUTTER, pull_up=True, active_state=None)
 
   def start(self):
     Thread(target=self.listen).start()
@@ -42,19 +44,19 @@ class Buttons():
     while True:
       if self.exit: return False
 
-      if GPIO.input(KEY_UP_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY_UP_PIN.value == 1:
         self.callback("UP")
-      if GPIO.input(KEY_LEFT_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY_LEFT_PIN == 1:
         self.callback("LEFT")
-      if GPIO.input(KEY_PRESS_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY_PRESS_PIN == 1:
         self.callback("CENTER")
-      if GPIO.input(KEY_RIGHT_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY_RIGHT_PIN == 1:
         self.callback("RIGHT")
-      if GPIO.input(KEY_DOWN_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY_DOWN_PIN == 1:
         self.callback("DOWN")
-      if GPIO.input(KEY1_PIN) == GPIO.HIGH:
+      if self.GPIO_KEY1_PIN == 1:
         self.callback("BACK")
-      if GPIO.input(SHUTTER) == GPIO.HIGH:
+      if self.GPIO_SHUTTER == 1:
         self.callback("SHUTTER")
 
       time.sleep(0.1)
