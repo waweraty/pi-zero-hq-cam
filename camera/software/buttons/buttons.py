@@ -46,17 +46,17 @@ class Buttons():
 
       if self.GPIO_KEY_UP_PIN.value == 1:
         self.callback("UP")
-      if self.GPIO_KEY_LEFT_PIN == 1:
+      if self.GPIO_KEY_LEFT_PIN.value == 1:
         self.callback("LEFT")
-      if self.GPIO_KEY_PRESS_PIN == 1:
+      if self.GPIO_KEY_PRESS_PIN.value == 1:
         self.callback("CENTER")
-      if self.GPIO_KEY_RIGHT_PIN == 1:
+      if self.GPIO_KEY_RIGHT_PIN.value == 1:
         self.callback("RIGHT")
-      if self.GPIO_KEY_DOWN_PIN == 1:
+      if self.GPIO_KEY_DOWN_PIN.value == 1:
         self.callback("DOWN")
-      if self.GPIO_KEY1_PIN == 1:
+      if self.GPIO_KEY1_PIN.value == 1:
         self.callback("BACK")
-      if self.GPIO_SHUTTER == 1:
+      if self.GPIO_SHUTTER.value == 1:
         self.callback("SHUTTER")
 
       time.sleep(0.1)
