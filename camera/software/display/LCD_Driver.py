@@ -193,6 +193,10 @@ def SetWindows(Xstart, Ystart, Xend, Yend):
 def ShowImage(Image):
     """Set buffer to value of Python Imaging Library image."""
     """Write display buffer to physical display"""
+
+    if(Image == None):
+        return
+
     imwidth, imheight = Image.size
     if imwidth > width or imheight > height:
         raise ValueError('Image must be same dimensions as display \
@@ -211,6 +215,9 @@ def ShowImage(Image):
 def ShowBuffer(Buffer):
     """Set buffer to value of Python Imaging Library image."""
     """Write display buffer to physical display"""
+    if(Buffer == None):
+        return
+
     imwidth, imheight = Buffer.size
     if imwidth > width or imheight > height:
         raise ValueError('Buffer must be same dimensions as display \
