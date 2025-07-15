@@ -85,61 +85,6 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    # look right
-    draw.line([(20, 40), (50, 40)], fill = "WHITE", width = 3) # left eyebrow
-    draw.line([(33, 44), (50, 44)], fill = "WHITE", width = 6) # left eye
-    draw.line([(38, 48), (48, 48)], fill = "WHITE", width = 2) # left eye bottom
-
-    draw.line([(75, 40), (105, 40)], fill = "WHITE", width = 3) # right eyebrow
-    draw.line([(88, 44), (105, 44)], fill = "WHITE", width = 6) # right eye
-    draw.line([(93, 48), (103, 48)], fill = "WHITE", width = 2) # right eye bottom
-
-    draw.line([(40, 95), (35, 93)], fill = "WHITE", width = 1)  # mouth left
-    draw.line([(40, 95), (90, 95)], fill = "WHITE", width = 1)  # mouth
-
-    ShowImage(image)
-
-    time.sleep(1)
-
-    image = Image.new("RGB", (width, height), "BLACK")
-    draw = ImageDraw.Draw(image)
-
-    # wink
-    draw.line([(20, 45), (50, 45)], fill = "WHITE", width = 3) # left eyebrow
-
-    draw.line([(75, 40), (105, 40)], fill = "WHITE", width = 3) # right eyebrow
-    draw.line([(88, 44), (105, 44)], fill = "WHITE", width = 6) # right eye
-    draw.line([(93, 48), (103, 48)], fill = "WHITE", width = 2) # right eye bottom
-
-    draw.line([(40, 95), (35, 93)], fill = "WHITE", width = 1)  # mouth left
-    draw.line([(40, 95), (90, 95)], fill = "WHITE", width = 1)  # mouth
-
-    ShowImage(image)
-
-    time.sleep(0.5)
-
-    image = Image.new("RGB", (width, height), "BLACK")
-    draw = ImageDraw.Draw(image)
-
-    # look right
-    draw.line([(20, 40), (50, 40)], fill = "WHITE", width = 4)  # left eyebrow
-    draw.line([(35, 45), (50, 45)], fill = "WHITE", width = 5)  # left eye
-    draw.line([(38, 48), (48, 48)], fill = "WHITE", width = 2)  # left eye bottom
-
-    draw.line([(75, 40), (105, 40)], fill = "WHITE", width = 4) # right eyebrow
-    draw.line([(90, 45), (105, 45)], fill = "WHITE", width = 5) # right eye
-    draw.line([(93, 48), (103, 48)], fill = "WHITE", width = 2) # right eye bottom
-
-    draw.line([(40, 95), (35, 93)], fill = "WHITE", width = 1)  # mouth left
-    draw.line([(40, 95), (90, 95)], fill = "WHITE", width = 1)  # mouth
-
-    ShowImage(image)
-
-    time.sleep(1)
-
-    image = Image.new("RGB", (width, height), "BLACK")
-    draw = ImageDraw.Draw(image)
-
     draw.text((20, 55), "Pi Zero Cam", fill = "WHITE", font = large_font)
     draw.text((20, 70), "v 1.1.0", fill = "WHITE", font = small_font)
 
@@ -231,7 +176,7 @@ class Display:
     image = Image.new("RGB", (width, height), "BLACK")
     draw = ImageDraw.Draw(image)
 
-    draw.text((int(width*0.5), int(height*0.5)), "OK", fill = "WHITE", font = large_font, align='center', anchor='mm')
+    draw.text((int(width*0.5), int(height*0.5)), "OK?", fill = "WHITE", font = large_font, align='center', anchor='mm')
 
     ShowImage(image)
 
@@ -265,7 +210,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.5)), (0, int(height*0.6))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.51)), (0, int(height*0.61))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
   
@@ -273,7 +218,7 @@ class Display:
     image = self.get_settings_img()
     draw = ImageDraw.Draw(image)
 
-    draw.line([(0, int(height*0.65)), (0, int(height*0.75))], fill = "MAGENTA", width = 2)
+    draw.line([(0, int(height*0.67)), (0, int(height*0.77))], fill = "MAGENTA", width = 2)
 
     ShowImage(image)
 
