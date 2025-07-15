@@ -218,10 +218,10 @@ def ShowBuffer(Buffer):
     if(Buffer == None):
         return
 
-    imwidth, imheight = Buffer.size
-    if imwidth > width or imheight > height:
-        raise ValueError('Buffer must be same dimensions as display \
-            ({0}x{1}).' .format(width, height))
+    #imwidth, imheight = Buffer.size
+    #if imwidth > width or imheight > height:
+    #    raise ValueError('Buffer must be same dimensions as display \
+    #        ({0}x{1}).' .format(width, height))
     img = np.asarray(Buffer.rotate(90))
     pix = np.zeros((width,height,2), dtype = np.uint8)
     pix[...,[0]] = np.add(np.bitwise_and(img[...,[0]],0xF8),np.right_shift(img[...,[1]],5))
