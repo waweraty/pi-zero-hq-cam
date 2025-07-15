@@ -74,7 +74,7 @@ class Camera:
         branch_hit = True
         pil_img = self.picam2.capture_image()
         pil_img = self.check_mod(pil_img) # bad name
-        self.display.display_buffer(pil_img.load())
+        self.display.display_buffer(pil_img)
 
       # after 1 min turn live preview off
       if (time.time() > self.live_preview_start + 60 and not self.live_preview_pause):
